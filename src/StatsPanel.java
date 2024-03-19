@@ -161,11 +161,11 @@ public class StatsPanel extends JPanel {
         }
     }
 
-    private void countGames(GameStats stats, int lowerBound, int binIndex, int numGames){
+    private int countGames(int binIndex, int lowerBound, GameStats stats){
+        int numGames = 0;
         if(binIndex == BIN_EDGES.length-1){
             // last bin
             // Sum all the results from lowerBound on up
-
             for(int numGuesses=lowerBound; numGuesses<stats.maxNumGuesses(); numGuesses++){
                 numGames += stats.numGames(numGuesses);
             }
@@ -176,7 +176,7 @@ public class StatsPanel extends JPanel {
                 numGames += stats.numGames(numGuesses);
             }
         }
-
+        return numGames;
     }
 
     private void updateResultsPanel(){
@@ -186,25 +186,9 @@ public class StatsPanel extends JPanel {
 
         for(int binIndex=0; binIndex<BIN_EDGES.length; binIndex++){
             final int lowerBound = BIN_EDGES[binIndex];
-            int numGames = 0;
-
-//            if(binIndex == BIN_EDGES.length-1){
-//                // last bin
-//                // Sum all the results from lowerBound on up
-//                for(int numGuesses=lowerBound; numGuesses<stats.maxNumGuesses(); numGuesses++){
-//                    numGames += stats.numGames(numGuesses);
-//                }
-//            }
-//            else{
-//                int upperBound = BIN_EDGES[binIndex+1];
-//                for(int numGuesses=lowerBound; numGuesses <= upperBound; numGuesses++) {
-//                    numGames += stats.numGames(numGuesses);
-//                }
-//            }
-            countGames(stats, lowerBound, binIndex, numGames);
 
             JLabel resultLabel = resultsLabels.get(binIndex);
-            resultLabel.setText(Integer.toString(numGames));
+            resultLabel.setText(Integer.toString(countGames(binIndex, lowerBound, stats)));
         }
     }
 }
