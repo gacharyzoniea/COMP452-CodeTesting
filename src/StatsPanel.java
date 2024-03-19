@@ -90,6 +90,24 @@ public class StatsPanel extends JPanel {
         }
     }
 
+    private void countGames(GameStats stats, int lowerBound, int binIndex, int numGames){
+        int upperBound;
+        if(binIndex == BIN_EDGES.length-1){
+            // last bin
+            // Sum all the results from lowerBound on up
+            upperBound = stats.maxNumGuesses();
+//            for(int numGuesses=lowerBound; numGuesses<stats.maxNumGuesses(); numGuesses++){
+//                numGames += stats.numGames(numGuesses);
+//            }
+        }
+        else{
+            upperBound = BIN_EDGES[binIndex+1];
+        }
+        for(int numGuesses=lowerBound; numGuesses <= upperBound; numGuesses++) {
+            numGames += stats.numGames(numGuesses);
+        }
+    }
+
     private void updateResultsPanel(){
         clearResults();
 
@@ -99,19 +117,20 @@ public class StatsPanel extends JPanel {
             final int lowerBound = BIN_EDGES[binIndex];
             int numGames = 0;
 
-            if(binIndex == BIN_EDGES.length-1){
-                // last bin
-                // Sum all the results from lowerBound on up
-                for(int numGuesses=lowerBound; numGuesses<stats.maxNumGuesses(); numGuesses++){
-                    numGames += stats.numGames(numGuesses);
-                }
-            }
-            else{
-                int upperBound = BIN_EDGES[binIndex+1];
-                for(int numGuesses=lowerBound; numGuesses <= upperBound; numGuesses++) {
-                    numGames += stats.numGames(numGuesses);
-                }
-            }
+//            if(binIndex == BIN_EDGES.length-1){
+//                // last bin
+//                // Sum all the results from lowerBound on up
+//                for(int numGuesses=lowerBound; numGuesses<stats.maxNumGuesses(); numGuesses++){
+//                    numGames += stats.numGames(numGuesses);
+//                }
+//            }
+//            else{
+//                int upperBound = BIN_EDGES[binIndex+1];
+//                for(int numGuesses=lowerBound; numGuesses <= upperBound; numGuesses++) {
+//                    numGames += stats.numGames(numGuesses);
+//                }
+//            }
+            countGames(stats, lowerBound, binIndex, numGames);
 
             JLabel resultLabel = resultsLabels.get(binIndex);
             resultLabel.setText(Integer.toString(numGames));
