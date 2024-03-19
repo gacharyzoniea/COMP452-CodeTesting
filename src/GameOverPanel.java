@@ -94,8 +94,7 @@ public class GameOverPanel extends JPanel {
      * @throws IOException
      */
     public void writeGameResults(GameResult result) throws IOException {
-        try {
-            CSVWriter writer = new CSVWriter(new FileWriter(StatsFile.FILENAME, true));
+        try(CSVWriter writer = new CSVWriter(new FileWriter(StatsFile.FILENAME, true))) {
             String [] record = new String[2];
             record[0] = LocalDateTime.now().toString();
             record[1] = Integer.toString(result.numGuesses);
