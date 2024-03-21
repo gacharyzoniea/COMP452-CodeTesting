@@ -52,24 +52,7 @@ public class StatsFile extends GameStats {
         }
     }
 
-//    public StatsFile(CSVReader reader) throws CsvValidationException, IOException {
-//        statsMap = new TreeMap<>();
-//        LocalDateTime limit = LocalDateTime.now().minusDays(30);
-//
-//            String[] values = null;
-//            while ((values = reader.readNext()) != null) {
-//                // values should have the date and the number of guesses as the two fields
-//                try {
-//                    addValues(values, limit);
-//                } catch (NumberFormatException nfe) {
-//                    // NOTE: In a full implementation, we would log this error and possibly alert the user
-//                    throw nfe;
-//                } catch (DateTimeParseException dtpe) {
-//                    // NOTE: In a full implementation, we would log this error and possibly alert the user
-//                    throw dtpe;
-//                }
-//            }
-//    }
+
 
 
     public void addValues(String[] values, LocalDateTime limit){

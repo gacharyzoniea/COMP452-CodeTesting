@@ -70,8 +70,7 @@ public class GameOverPanel extends JPanel {
     /**
      * Sets the game results
      */
-    // TODO: refactor this method
-    public void setGameResults(GameResult result) throws IOException {
+    public void setGameResults(GameResult result) {
         this.gameResult = result;
     }
 
