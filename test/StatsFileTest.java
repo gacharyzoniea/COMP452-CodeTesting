@@ -1,10 +1,12 @@
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StatsFileTest {
 
@@ -21,6 +23,15 @@ public class StatsFileTest {
         System.out.println(file.getStatsMap().get(3));
         assertEquals(1, file.getStatsMap().get(3).intValue());
     }
+
+    @Test
+    void countIsBogus(){
+        String[] values = new String[] {"2024-02-24T20:10:40.110278500", "ten"};
+        StatsFile file = new StatsFile();
+        LocalDateTime limit = LocalDateTime.now();
+        assertThrows(NumberFormatException.class, () -> file.addValues(values, limit));
+    }
+
 
 //    void invalidDate() throws Exception{
 //        String[] values = new String[]
