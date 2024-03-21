@@ -81,6 +81,10 @@ public class StatsFile extends GameStats {
         }
     }
 
+    public SortedMap<Integer, Integer> getStatsMap(){
+        return statsMap;
+    }
+
 
     public CSVReader readerCreator() throws FileNotFoundException {
         return new CSVReader(new FileReader(FILENAME));
