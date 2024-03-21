@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,12 +33,13 @@ public class StatsFileTest {
         assertThrows(NumberFormatException.class, () -> file.addValues(values, limit));
     }
 
-
-//    void invalidDate() throws Exception{
-//        String[] values = new String[]
-//    }
-
-
+    @Test
+    void invalidDate() {
+        String[] values = {"A really bad date", "35"};
+        LocalDateTime limit = LocalDateTime.now();
+        StatsFile file = new StatsFile();
+        assertThrows(DateTimeParseException.class, ()->{file.addValues(values, limit);});
+    }
 
 
 }
