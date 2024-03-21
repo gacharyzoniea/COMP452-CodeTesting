@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import javax.swing.*;
 import com.formdev.flatlaf.*;
 
@@ -21,7 +22,10 @@ public class GuessTheNumberUI {
         }
 
         SwingUtilities.invokeLater(() -> new GuessTheNumberUI().displayGUI());
+        System.out.println(LocalDateTime.now());
     }
+
+
 
     // JFrame contains content pane, which contains JPanel (CardLayout),
     // which contains a JPanel (BoxLayout) for each screen (i.e., the cards)
