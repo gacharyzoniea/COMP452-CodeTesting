@@ -17,6 +17,6 @@ public class StatsPanelTest {
                 statsPanel.makeLabel().toString());
     }
 
-    
+
 
 }

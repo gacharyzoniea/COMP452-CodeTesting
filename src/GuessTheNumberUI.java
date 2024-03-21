@@ -22,7 +22,6 @@ public class GuessTheNumberUI {
         }
 
         SwingUtilities.invokeLater(() -> new GuessTheNumberUI().displayGUI());
-        System.out.println(LocalDateTime.now());
     }
 
 
