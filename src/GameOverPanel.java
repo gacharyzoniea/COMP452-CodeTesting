@@ -68,12 +68,18 @@ public class GameOverPanel extends JPanel {
 
 
     /**
-     * Sets the game results, updates the UI, and saves results (if human was playing)
+     * Sets the game results
      */
     // TODO: refactor this method
     public void setGameResults(GameResult result) throws IOException {
         this.gameResult = result;
+    }
 
+    /**
+     * Sets the UI
+     * @param result
+     */
+    public String setUI(GameResult result){
         answerTxt.setText("The answer was " + result.correctValue + ".");
         if(result.numGuesses == 1){
             numGuessesTxt.setText((result.humanWasPlaying ? "You" : "I") + " guessed it on the first try!");
@@ -81,11 +87,7 @@ public class GameOverPanel extends JPanel {
         else {
             numGuessesTxt.setText("It took " + (result.humanWasPlaying ? "you" : "me") + " " + result.numGuesses + " guesses.");
         }
-
-        if(result.humanWasPlaying) {
-            writeGameResults(result);
-
-        }
+        return numGuessesTxt.getText();
     }
 
     /**

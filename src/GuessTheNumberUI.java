@@ -75,6 +75,8 @@ public class GuessTheNumberUI {
         JPanel humanGuessesPanel = new HumanGuessesPanel(cardsPanel, gameResult -> {
             try {
                 gameOverPanel.setGameResults(gameResult);
+                gameOverPanel.setUI(gameResult);
+                gameOverPanel.writeGameResults(gameResult);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -87,11 +89,8 @@ public class GuessTheNumberUI {
 
         // COMPUTER_PLAY
         JPanel computerGuessesPanel = new ComputerGuessesPanel(cardsPanel, gameResult -> {
-            try {
-                gameOverPanel.setGameResults(gameResult);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            gameOverPanel.setGameResults(gameResult);
+            gameOverPanel.setUI(gameResult);
         });
         addToCards(cardsPanel, computerGuessesPanel, ScreenID.COMPUTER_PLAY.name());
 
