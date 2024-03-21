@@ -79,13 +79,41 @@ public class StatsPanel extends JPanel {
                     binName = Integer.toString(BIN_EDGES[binIndex]);
                 }
             }
-
-            resultsPanel.add(new JLabel(binName));
-            JLabel result = new JLabel("--");
-            resultsLabels.add(result);
-            resultsPanel.add(result);
+            addToPanel(binName, resultsPanel);
         }
     }
+
+    public ArrayList<String> makeLabel(){
+        ArrayList<String> output = new ArrayList<String>();
+        for(int binIndex=0; binIndex<BIN_EDGES.length; binIndex++){
+            String binName;
+            if(binIndex == BIN_EDGES.length-1){
+                // last bin
+                binName = BIN_EDGES[binIndex] + " or more";
+            }
+            else{
+                int upperBound = BIN_EDGES[binIndex+1] - 1;
+                if(upperBound > BIN_EDGES[binIndex]){
+                    binName = BIN_EDGES[binIndex] + "-" + upperBound;
+                }
+                else{
+                    binName = Integer.toString(BIN_EDGES[binIndex]);
+                }
+            }
+            output.add(binName);
+            output.add("--");
+        }
+        return output;
+    }
+
+    private void addToPanel(String binName, JPanel resultsPanel){
+        resultsPanel.add(new JLabel(binName));
+        JLabel result = new JLabel("--");
+        resultsLabels.add(result);
+        resultsPanel.add(result);
+    }
+
+
 
 
     private void clearResults(){

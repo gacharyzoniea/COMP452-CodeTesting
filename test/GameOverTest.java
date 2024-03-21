@@ -5,7 +5,7 @@ import javax.swing.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameOverTest {
-    public class MockJPanel extends JPanel {
+    private class MockJPanel extends JPanel {
     }
     @Test
     void computerZeroGuess(){
